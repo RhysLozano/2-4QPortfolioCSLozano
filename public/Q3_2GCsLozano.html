@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Q3 2nd Graded Exercise">
+    <meta name="keywords" content="HTML Forms">
+    <meta name="author" content="AL Mendoza">
+    <title>Sample Form</title>
+    <!-- updated external css link to show how to share it between repository -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../styles.css" />
+    <link rel="icon" href="../../assets/pshslogo.png" sizes="32x32" type="image/png">
+    <script src="script.js" defer></script>
+   <style>
+    body{
+        padding: 25px;
+        font-family: arial;
+        width: 80%;
+        margin-left: 10%;
+        }
+
+        .title {
+            color: #5C6AC4;
+        }
+
+        fieldset:nth-child(2) {
+             margin-top: 20px;
+        }
+
+        legend {
+            background: black;
+            color: yellow;
+            padding: 5px;
+        }
+        label {
+             margin: 5%;
+        }
+    </style>
+  </head>
+  <body>
+     <header>
+        <div>
+            <img src="../../assets/pshslogo.png" alt="pshs logo" 
+               title="The Official Logo" width="50px" height="50px" />
+            <h1>
+                Sample Use of HTML Form    
+            </h1>
+            <h3>by AL Mendoza </h3>
+        </div>
+        <nav class="navbar">
+            <a href="../../index.html"> Home </a>
+            <a href="registered.html"> Show Saved Accounts </a>
+        </nav>
+    </header>
+    <section>
+      <h1 class="title">Sign-up Page</h1>
+      <form id="dForm" action="submit" method="post" onsubmit="confirmSubmission(event)" onreset="confirmReset(event)" >
+        <fieldset>
+          <legend>Your Credentials</legend><br/>
+          <label> StudentId: 
+            <input type="text" name="uname" id="uname" required onblur ="missingInformation()" />
+          </label><br/><br/>
+          <label> Fullname :
+            <input type="password" name="pword" id="pword" required  onblur ="missingInformation()"  />
+          </label><br/><br/>
+          <label> Birthday :
+            <input type="date" name="dob" id="dob" />
+          </label><br/><br/>
+          <label> Email Address :
+            <input type="email" name="eml" id="eml" required  onblur ="missingInformation()" />
+          </label><br/><br/>
+          <label> Mobile phone :
+            <input type="mobilephone" name="mbphone" id="mbphone" required  onblur ="missingInformation()" />
+          </label><br/><br/>
+          <label for="grade level" >Grade Level :></label>
+            <select name="grade level" id="gradelevel" required  onblur ="missingInformation()"   >
+             <option value = "7" > Grade 7</option>
+             <option value = "8" > Grade 8</option>
+             <option value = "9" > Grade 9</option>
+             <option value = "10" > Grade 10</option>
+             <option value = "11" > Grade 11</option>
+             <option value = "12" > Grade 12</option>
+            </select><br/><br/>
+             <label> Intern/Extern :
+                <input type="radio" name="yes" value="Intern" /> Intern
+                <input type="radio" name="yes" value="Extern" /> Extern
+            </label><br/><br/>
+          <label for="club" >Preferred Organization/Club :></label>
+          <select name="club" id="club" required>
+           <option value = "invictus" > Invictus</option>
+           <option value = "Exosure" > Exposure</option>
+           <option value = "Alianti" > Alianti</option>
+           <option value = "Math" > Math</option>
+           <option value = "Pallastro" > Pallastro</option>
+           <option value = "MUN" > MUN</option>
+           </select><br><br>
+
+        </label><br/><br/>
+          <label> Why do you want to join ? : 
+            <textarea name="about" id="about">
+
+            </textarea>
+          </label><br/><br/>
+          
+
+          
+        </fieldset>  
+        <fieldset>
+          <legend>Action Buttons</legend>
+          <button type="submit"> Accept </button>
+          <input type="reset" value=" Clear " />
+        </fieldset> 
+      </form>
+    </section>
+    <script>
+        function confirmSubmission(event){
+            const userConfirmed = confirm ("Are you sure you want to submit this form");
+
+            if (!userConfirmed){
+                event.preventDefault ();
+                alert("Form submission cancelled");
+            }
+        }
+
+        function confirmedReset(event){
+            const userConfirmed = confirm("Are yuu sure you want to reset all information ?");
+
+            if (!userConfirmed){
+                event.preventDefault();
+                alert("Form submission canceled.");
+            }
+        }
+
+        function confirmedReset(event){
+            const userConfirmed = confirm("Are yu sure you want to reset all information ?");
+
+            if (!userConfirmed){
+                event.preventDefault();
+                alert("Form submission canceled.");
+            }
+        }
+
+        
+    function missingInformation1() {
+        document.getElementById("studentid").style.background = "red";
+    }
+    function missingInformation2(){
+        document.getElementById("fname").style.background = "red";
+    }
+    function missingInformation3(){
+        document.getElementById("birthday").style.background = "red";
+    }
+    function missingInformation4(){
+        document.getElementById("email").style.background = "red";
+    }
+    function missingInformation5(){
+        document.getElementById("phone").style.background = "red";
+    }
+    function missingInformation6(){
+        document.getElementById("i/e").style.background = "red";
+    }
+    function missingInformation7(){
+        document.getElementById("about").style.background = "red";
+    }
+
+
+
+
+
+    </script>
+  </body>
+</html>
