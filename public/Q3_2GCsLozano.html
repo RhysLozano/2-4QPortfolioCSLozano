@@ -54,26 +54,26 @@
     </header>
     <section>
       <h1 class="title">Sign-up Page</h1>
-      <form id="dForm" action="submit" method="post" onsubmit="confirmSubmission(event)" onreset="confirmReset(event)" >
+      <form id="dForm" action="submit" method="post"  required onblur="validateField(this)" onfocus="this.classlist.remove(`empty-field`)">
         <fieldset>
           <legend>Your Credentials</legend><br/>
           <label> StudentId: 
-            <input type="text" name="uname" id="uname" required onblur ="missingInformation()" />
+            <input type="text" name="uname" id="uname"  required onblur="validateField(this)" onfocus="this.classlist.remove(`empty-field`)" />
           </label><br/><br/>
           <label> Fullname :
-            <input type="password" name="pword" id="pword" required  onblur ="missingInformation()"  />
+            <input type="password" name="pword" id="pword" required onblur="validateField(this)" onfocus="this.classlist.remove(`empty-field`)"  />
           </label><br/><br/>
           <label> Birthday :
-            <input type="date" name="dob" id="dob" />
+            <input type="date" name="dob" id="dob"  required onblur="validateField(this)" onfocus="this.classlist.remove(`empty-field`)" />
           </label><br/><br/>
           <label> Email Address :
-            <input type="email" name="eml" id="eml" required  onblur ="missingInformation()" />
+            <input type="email" name="eml" id="eml"  required onblur="validateField(this)" onfocus="this.classlist.remove(`empty-field`)">
           </label><br/><br/>
           <label> Mobile phone :
-            <input type="mobilephone" name="mbphone" id="mbphone" required  onblur ="missingInformation()" />
+            <input type="mobilephone" name="mbphone" id="mbphone"  required onblur="validateField(this)" onfocus="this.classlist.remove(`empty-field`)" />
           </label><br/><br/>
           <label for="grade level" >Grade Level :></label>
-            <select name="grade level" id="gradelevel" required  onblur ="missingInformation()"   >
+            <select name="grade level" id="gradelevel"  required onblur="validateField(this)" onfocus="this.classlist.remove(`empty-field`)"   >
              <option value = "7" > Grade 7</option>
              <option value = "8" > Grade 8</option>
              <option value = "9" > Grade 9</option>
@@ -97,9 +97,10 @@
 
         </label><br/><br/>
           <label> Why do you want to join ? : 
-            <textarea name="about" id="about">
-
+               <textarea name="about" id="about" onblur="missingInformation7()">
+              
             </textarea>
+
           </label><br/><br/>
           
 
@@ -132,13 +133,16 @@
         }
 
         function confirmedReset(event){
-            const userConfirmed = confirm("Are yu sure you want to reset all information ?");
+            const userConfirmed = confirm("Are you sure you want to reset all information ?");
 
             if (!userConfirmed){
                 event.preventDefault();
                 alert("Form submission canceled.");
             }
         }
+
+
+    
 
         
     function missingInformation1() {
