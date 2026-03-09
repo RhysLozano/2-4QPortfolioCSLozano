@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Kuch Lozano">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
+<link rel="stylesheet" href="./style.css">
+
+
+<title>View Sign Ups</title>
+
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 20px;
+  font-family: Karla;
+}
+
+th {
+  background:#f8a5c1;
+  padding:8px;
+  border:1px solid #473335;
+}
+
+td {
+  padding:8px;
+  border:1px solid #47333d;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <nav class="navbar">
+  <a href="../../index.html">Home</a>
+  <a href="Q3_2GCsLozano.html">Create Account</a>
+</nav>
+</header>
+
+<section>
+
+<h1 class="title">Saved Student Sign-Ups</h1>
+
+<label>Filter by Club:</label>
+<select id="clubFilter">
+ <option value = "invictus" > Invictus</option>
+    <option value = "Exosure" > Exposure</option>
+    <option value = "Alianti" > Alianti</option>
+    <option value = "Math" > Math</option>
+    <option value = "Pallastro" > Pallastro</option>
+    <option value = "MUN" > MUN</option>
+</select>
+
+<p id="total"></p>
+
+<table id="results"></table>
+
+</section>
+
+<script>
+
+const table = document.getElementById("results");
+const filter = document.getElementById("clubFilter");
+const total = document.getElementById("total");
+
+// Load accounts OBJECT from localStorage
+let acctString = localStorage.getItem("accounts");
+let accountList = acctString ? JSON.parse(acctString) : {};
+
+// Convert object → array and keep ID
+let students = Object.keys(accountList).map(id => {
+  return { sId: id, ...accountList[id] };
+});
+
+function show(list){
+
+if(list.length === 0){
+  table.innerHTML = "<tr><td>No records found.</td></tr>";
+  total.textContent = "Total Sign-ups: 0";
+  return;
+}
+
+let html = `
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Email</th>
+<th>Grade</th>
+<th>Club</th>
+</tr>
+`;
+
+list.forEach(s=>{
+html += `
+<tr>
+<td>${s.sId}</td>
+<td>${s.fname}</td>
+<td>${s.emad}</td>
+<td>${s.gradelvl}</td>
+<td>${s.club}</td>
+</tr>`;
+});
+
+table.innerHTML = html;
+total.textContent = "Total Sign-ups: " + list.length;
+}
+
+// Initial display
+show(students);
+
+// Filter dropdown
+filter.addEventListener("change",()=>{
+
+if(filter.value === "ALL"){
+  show(students);
+}
+else{
+  show(students.filter(s => s.club === filter.value));
+}
+
+});
+</script>
+
+</body>
+</html>
